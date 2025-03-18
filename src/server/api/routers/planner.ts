@@ -34,7 +34,7 @@ export const plannerRouter = createTRPCRouter({
     )
     .mutation(async ({ input }) => {
       const response = (await (
-        await fetch(`${env.DATABASE_URL}/weekly-plan/generate`, {
+        await fetch(`${env.BACKEND_URL}/weekly-plan/generate`, {
           method: "POST",
           body: JSON.stringify({
             ingredients: input.ingredients,
@@ -45,8 +45,6 @@ export const plannerRouter = createTRPCRouter({
         })
       ).json()) as WeeklyPlan;
 
-      return {
-        data: response,
-      };
+      return response
     }),
 });
